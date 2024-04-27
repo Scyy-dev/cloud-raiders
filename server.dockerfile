@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.12
 
 RUN curl -sSLk https://install.python-poetry.org/ | POETRY_HOME=/opt/poetry python && \
     cd /usr/local/bin && \
@@ -8,8 +8,17 @@ RUN curl -sSLk https://install.python-poetry.org/ | POETRY_HOME=/opt/poetry pyth
 COPY ./server/scripts/start.sh /start.sh
 RUN chmod +x /start.sh
 
-COPY ./server/pyproject.toml /server/poetry.lock* /server/
+COPY ./server/pyproject.toml ./server/poetry.lock* /app/
 
-COPY /server/app /server/app
+COPY ./server/app /app/app
+
+WORKDIR /app
+RUN bash -c "poetry install --no-root --no-dev"
+
+ENV PYTHONPATH=/app
+
+EXPOSE 80
+
+CMD [ "/start.sh" ]
 
 
