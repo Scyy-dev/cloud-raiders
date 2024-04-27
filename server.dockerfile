@@ -19,5 +19,3 @@ ENV PYTHONPATH=/app
 EXPOSE 80
 
 CMD [ "/start.sh" ]
-
-
