@@ -1,0 +1,1 @@
+exec gunicorn "app.main:app"
