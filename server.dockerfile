@@ -9,10 +9,9 @@ COPY ./server/scripts/start.sh /start.sh
 RUN chmod +x /start.sh
 
 COPY ./server/pyproject.toml ./server/poetry.lock* /app/
+COPY ./server/app/ /app/app/
 
-COPY ./server/app /app/app
-
-WORKDIR /app
+WORKDIR /app/
 RUN bash -c "poetry install --no-root --no-dev"
 
 ENV PYTHONPATH=/app
