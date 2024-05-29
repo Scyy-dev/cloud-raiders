@@ -14,7 +14,7 @@ COPY ./server/app/ /app/app/
 WORKDIR /app/
 RUN bash -c "poetry install --no-root --no-dev"
 
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/app 
 
 EXPOSE 80
 
